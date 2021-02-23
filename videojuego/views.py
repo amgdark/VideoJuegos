@@ -21,3 +21,15 @@ def nuevo_categoria(request):
             return redirect('categoria:lista')
     context = {'form': form }
     return render(request, 'nuevo_categoria.html', context)
+
+def editar_categoria(request, id):
+    categoria = Categoria.objects.get(id=id)
+    form = CategoriaForm(instance=categoria)
+    if request.method == 'POST':
+        form = CategoriaForm(request.POST, instance=categoria)
+        if form.is_valid():
+            form.save()
+            return redirect('categoria:lista')
+    context = {'form': form }
+    return render(request, 'editar_categoria.html', context)
+
