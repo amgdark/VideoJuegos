@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de videojuegos</title>
+</head>
+<body>
+    <h1>Lista de videojuegos</h1>
+    <a href="{% url 'videojuego:nuevo' %}">Nuevo Juego</a>
+    <hr>
+    <br>
+    <table width="100%">
+        <thead>
+            <th>Título</th>
+            <th>Año</th>
+            <th>Categoría</th>
+            <th>Precio</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+        </thead>
+        <tbody>
+            {% for videojuego in object_list  %}
+                <tr>
+                    <td>{{videojuego.titulo}}</td>
+                    <td>{{videojuego.anio}}</td>
+                    <td>{{videojuego.categoria}}</td>
+                    <td>{{videojuego.precio}}</td>
+                    <td>{{videojuego.descripcion}}</td>
+                    <td><a href="{% url 'videojuego:eliminar' videojuego.id %}">Eliminar</a></td>
+                    <td><a href="">Editar</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

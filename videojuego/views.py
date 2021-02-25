@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
-from .models import Categoria
+from .models import Categoria, Videojuego
 from .form_categoria import CategoriaForm
+from django.views.generic import ListView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.urls import reverse_lazy
 
 
 def lista_categoria(request):
@@ -9,7 +12,7 @@ def lista_categoria(request):
 
 def eliminar_categoria(request, id):
     Categoria.objects.get(id=id).delete()
-    return redirect('videojuego:lista')
+    return redirect('categoria:lista')
 
 def nuevo_categoria(request):
     form = CategoriaForm()
@@ -33,3 +36,21 @@ def editar_categoria(request, id):
     context = {'form': form }
     return render(request, 'editar_categoria.html', context)
 
+
+class VideojuegoList(ListView):
+    model = Videojuego
+    # context_object_name = 'videojuegos'
+    # extra_context = {
+    #     'var1': 'Clases génericas',
+    #     'nombre': 'Alex',
+    # }
+    # queryset = Videojuego.objects.filter(anio=1991)
+
+class VideojuegoEliminar(DeleteView):
+    model = Videojuego
+    success_url = reverse_lazy('videojuego:lista')
+
+class VideojuegoCrear(CreateView):
+    model = Videojuego
+    fields = '__all__'
+    success_url = reverse_lazy('videojuego:lista')
