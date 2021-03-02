@@ -1,16 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuevo videojuego</title>
-</head>
-<body>
-    <h1>Nuevo videojuego</h1>
+{% extends 'base.html' %}
+
+{% block titulo %}
+    {{etiqueta}} videojuego
+{% endblock titulo %}
+
+{% block css %}
+{% endblock css %}
+    
+
+{% block contenido %}
+    <h1>{{etiqueta}} videojuego</h1>
     <form method="post">
         {% csrf_token %}
         {{form.as_p}}
-        <button type="submit">Agregar</button>
+        <button type="submit" class="btn btn-success">{{boton}}</button>
     </form>
-</body>
-</html>
+{% endblock contenido %}
+
+
+{% block js %}
+{% endblock js %}
+    
