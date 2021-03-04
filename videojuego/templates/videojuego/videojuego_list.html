@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base2.html' %}
 
 
 {% block titulo %}
@@ -7,37 +7,38 @@
     
 
 {% block contenido %}
+<h1 class="app-page-title">Lista de videojuegos</h1>   
+<div class="app-card app-card-orders-table shadow-sm mb-5">
+    <a href="{% url 'videojuego:nuevo' %}" class="btn btn-primary">Nuevo Juego</a>
+    <hr>
+    <br>
+    <table class="table">
+        <thead>
+            <th>Título</th>
+            <th>Año</th>
+            <th>Categoría</th>
+            <th>Precio</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+        </thead>
+        <tbody>
+            {% for videojuego in object_list  %}
+            <tr>
+                <td>{{videojuego.titulo}}</td>
+                <td>{{videojuego.anio}}</td>
+                <td>{{videojuego.categoria}}</td>
+                <td>{{videojuego.precio}}</td>
+                <td>{{videojuego.descripcion}}</td>
+                <td>
+                    <a href="{% url 'videojuego:ver' videojuego.id %}" class="btn btn-primary btn-sm">Ver</a>
+                    <a href="{% url 'videojuego:eliminar' videojuego.id %}">Eliminar</a>
+                    <a href="{% url 'videojuego:editar' videojuego.id %}">Editar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
     
-
-<h1>Lista de videojuegos</h1>
-<a href="{% url 'videojuego:nuevo' %}" class="btn btn-primary">Nuevo Juego</a>
-<hr>
-<br>
-<table class="table">
-    <thead>
-        <th>Título</th>
-        <th>Año</th>
-        <th>Categoría</th>
-        <th>Precio</th>
-        <th>Descripción</th>
-        <th>Acciones</th>
-    </thead>
-    <tbody>
-        {% for videojuego in object_list  %}
-        <tr>
-            <td>{{videojuego.titulo}}</td>
-            <td>{{videojuego.anio}}</td>
-            <td>{{videojuego.categoria}}</td>
-            <td>{{videojuego.precio}}</td>
-            <td>{{videojuego.descripcion}}</td>
-            <td>
-                <a href="{% url 'videojuego:ver' videojuego.id %}">Ver</a>
-                <a href="{% url 'videojuego:eliminar' videojuego.id %}">Eliminar</a>
-                <a href="{% url 'videojuego:editar' videojuego.id %}">Editar</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-
-{% endblock contenido %}
+    {% endblock contenido %}
+    
