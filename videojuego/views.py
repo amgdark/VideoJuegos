@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Categoria, Videojuego
-from .form_categoria import CategoriaForm
+from .forms import CategoriaForm, VideojuegoForm
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
@@ -52,13 +52,13 @@ class VideojuegoEliminar(DeleteView):
 
 class VideojuegoCrear(CreateView):
     model = Videojuego
-    fields = '__all__'
-    extra_context = {'etiqueta': 'Nuevo','boton': 'Agregar'}
+    form_class = VideojuegoForm
+    extra_context = {'etiqueta': 'Nuevo','boton': 'Agregar',  'vj_nuevo':True}
     success_url = reverse_lazy('videojuego:lista')
 
 class VideojuegoActualizar(UpdateView):
     model = Videojuego
-    fields = '__all__'
+    form_class = VideojuegoForm
     extra_context = {'etiqueta': 'Actualizar', 'boton': 'Guardar'}
     success_url = reverse_lazy('videojuego:lista')
 

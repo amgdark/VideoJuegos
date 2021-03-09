@@ -1,16 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eliminar videojuego</title>
-</head>
-<body>
+{% extends 'base2.html' %}
+
+
+{% block titulo %}
+    Eliminar videojuego
+{% endblock titulo %}
+
+
+{% block contenido %}
     <form method="post">
         {% csrf_token %}
         <p>Quieres eliminar el videojuego "{{ object }}"?</p>
-        <input type="submit" value="Sí, si quiero">
-        <a href="{% url 'videojuego:lista' %}">Mejor no</a>
+        <input type="submit" value="Sí, si quiero" class="btn btn-danger">
+        <a href="{% url 'videojuego:lista' %}" class="btn btn-info">Mejor no</a>
     </form>
-</body>
-</html>
+    
+{% endblock contenido %}
+    
