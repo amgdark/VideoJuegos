@@ -1,5 +1,5 @@
 {% extends 'base2.html' %}
-
+{% load static %}
 
 {% block titulo %}
     Lista de videojuegos
@@ -33,12 +33,41 @@
                     <a href="{% url 'videojuego:ver' videojuego.id %}" class="btn btn-primary btn-sm">Ver</a>
                     <a href="{% url 'videojuego:eliminar' videojuego.id %}">Eliminar</a>
                     <a href="{% url 'videojuego:editar' videojuego.id %}">Editar</a>
+                    <button onclick="muestraModal('{% url 'videojuego:eliminar' videojuego.id %}')" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Eliminar 2
+                    </button>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <form id="formEliminar" method="post">
+                {% csrf_token %}
+                <button type="submit">Eliminar</button>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock contenido %}
+
+{% block js %}
+    <script src="{% static 'js/funciones.js' %}"></script>    
+{% endblock js %}
     
-    {% endblock contenido %}
     
