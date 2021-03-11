@@ -31,9 +31,11 @@
                 <td>{{videojuego.descripcion}}</td>
                 <td>
                     <a href="{% url 'videojuego:ver' videojuego.id %}" class="btn btn-primary btn-sm">Ver</a>
-                    <a href="{% url 'videojuego:eliminar' videojuego.id %}">Eliminar</a>
                     <a href="{% url 'videojuego:editar' videojuego.id %}">Editar</a>
-                    <button onclick="muestraModal('{% url 'videojuego:eliminar' videojuego.id %}')" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    <button 
+                        onclick="muestraModal('{% url 'videojuego:eliminar' videojuego.id %}','{{videojuego.titulo}}')" 
+                        type="button" class="btn btn-primary" 
+                        data-toggle="modal" data-target="#exampleModal">
                         Eliminar 2
                     </button>
                 </td>
@@ -48,17 +50,16 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
           <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          ...
+        <div class="modal-body" id="modalCuerpo" >         
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
             <form id="formEliminar" method="post">
                 {% csrf_token %}
-                <button type="submit">Eliminar</button>
+                <button type="submit" class="btn btn-danger">Eliminar</button>
             </form>
         </div>
       </div>
