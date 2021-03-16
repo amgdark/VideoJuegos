@@ -1,0 +1,25 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+{% block titulo %}
+    {{etiqueta}} usuario
+{% endblock titulo %}
+
+{% block css %}
+{% endblock css %}
+    
+
+{% block contenido %}
+    <h1>{{etiqueta}} usuario</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="btn btn-success">{{boton}}</button>
+    </form>
+{% endblock contenido %}
+
+
+{% block js %}
+    <script src="{% static 'js/funciones.js' %}"></script>
+{% endblock js %}
+    
