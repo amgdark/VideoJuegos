@@ -1,9 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.edit import CreateView
+from django.views.generic import ListView
 from django.urls import reverse_lazy
 from .models import Usuario, Municipio, Estado
 from .forms import UsuarioForm
 from django.http import JsonResponse
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.forms import AuthenticationForm
 
 
 class NuevoUsuario(CreateView):
@@ -18,6 +21,13 @@ class NuevoUsuario(CreateView):
         # print (user)
 
         return super().form_valid(form)
+
+class ListaUsuario(ListView):
+    model = Usuario
+
+class LoginUsuario(LoginView):
+    template_name = 'login.html'
+    form_class = AuthenticationForm
 
 
 def obtiene_municipios(request):

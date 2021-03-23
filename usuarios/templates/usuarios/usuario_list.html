@@ -1,0 +1,69 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+{% block titulo %}
+    Lista de usuarios
+{% endblock titulo %}
+    
+
+{% block contenido %}
+<h1 class="app-page-title">Lista de usuarios</h1>   
+<div class="app-card app-card-orders-table shadow-sm mb-5">
+    <table class="table">
+        <thead>
+            <th>Nombre</th>
+            <th>Usuario</th>
+            <th>Avatar</th>
+            <th>Acciones</th>
+        </thead>
+        <tbody>
+            {% for usuario in object_list  %}
+            <tr>
+                <td>{{usuario.first_name}}</td>
+                <td>{{usuario.username}}</td>
+                <td>
+                    {% if usuario.foto %}
+                        <img src="{{MEDIA_URL}}{{usuario.foto}}" alt="" width="40px">
+                    {% else %}
+                        <img src="{% static 'images/user.png' %}" alt="" width="40px">
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="" class="btn btn-primary btn-sm">Ver</a>
+                    <a href="">Editar</a>
+                    <a href="">Eliminar</a>
+                    <a href="">Activar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
+          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modalCuerpo" >         
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <form id="formEliminar" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock contenido %}
+
+{% block js %}
+    <script src="{% static 'js/funciones.js' %}"></script>    
+{% endblock js %}
+    
+    

@@ -12,7 +12,6 @@ class UsuarioForm(forms.ModelForm):
         widgets = {
             'password': forms.PasswordInput(attrs={'class':'form-control', 'placeholder':'Contraseña'}),
             'estado': forms.Select(attrs={'class':'form-control'})
-
         }
 
     def save(self, commit=True):
