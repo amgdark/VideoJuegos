@@ -1,2 +1,4 @@
 django
 Pillow
+six
+mysqlclient

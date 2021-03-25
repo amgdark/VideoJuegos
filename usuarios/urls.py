@@ -10,6 +10,7 @@ urlpatterns = [
     # path('editar/<int:id>', views.editar_categoria, name='editar'),
     path('nuevo/', views.NuevoUsuario.as_view(), name='nuevo'),
     path('login/', views.LoginUsuario.as_view(), name='login'),
+    path('activar/<slug:uid64>/<slug:token>', views.ActivarCuenta.as_view(), name='activar'),
     path('municipios/', views.obtiene_municipios, name='municipios'),
 
 ]
